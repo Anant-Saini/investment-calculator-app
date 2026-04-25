@@ -10,13 +10,15 @@
       </tr>
     </thead>
     <tbody>
+      @for (annualData of getInvestmentResults; track annualData.year) {
         <tr>
-            <td>1</td>
-            <td>20000</td>
-            <td>81000</td>
-            <td>2345</td>
-            <td>24516</td>
+          <td>{{ annualData.year }}</td>
+          <td>{{ annualData.valueEndOfYear }}</td>
+          <td>{{ annualData.interest }}</td>
+          <td>{{ annualData.totalInterest }}</td>
+          <td>{{ annualData.totalAmountInvested }}</td>
         </tr>
+      }
     </tbody>
   </table>
 </div>

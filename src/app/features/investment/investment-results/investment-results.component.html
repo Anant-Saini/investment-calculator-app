@@ -1,4 +1,4 @@
-<div>
+<div class="results-container">
   <table>
     <thead>
       <tr>
@@ -10,18 +10,19 @@
       </tr>
     </thead>
     <tbody>
-      @for (annualData of result(); track annualData.year) {
+      @for (data of result(); track data.year) {
         <tr>
-          <td>{{ annualData.year }}</td>
-          <td>{{ annualData.valueEndOfYear | inr }}</td>
-          <td>{{ annualData.interest | inr }}</td>
-          <td>{{ annualData.totalInterest | inr }}</td>
-          <td>{{ annualData.totalAmountInvested | inr }}</td>
+          <td>{{ data.year }}</td>
+          <td>{{ data.valueEndOfYear | inr }}</td>
+          <td>{{ data.interest | inr }}</td>
+          <td>{{ data.totalInterest | inr }}</td>
+          <td>{{ data.totalAmountInvested | inr }}</td>
         </tr>
       }
     </tbody>
   </table>
+
   <div class="summary-footer">
-      <strong>Grand Total Interest Earned: {{ totalInterest() | inr }}</strong>
+    <strong>Grand Total Interest Earned: {{ totalInterest() | inr }}</strong>
   </div>
 </div>

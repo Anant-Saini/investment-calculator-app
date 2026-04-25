@@ -1,19 +1,28 @@
+/* Update your existing table selector */
 table {
   max-width: 50rem;
   margin: 2rem auto;
   padding: 1rem;
   table-layout: fixed;
-  border-spacing: 1rem;
-  text-align: right;
+  border-spacing: 0; /* Changed from 1rem to 0 for better control */
+  width: 100%;       /* Ensure it takes up the max-width available */
+  border-collapse: collapse;
 }
 
-table thead {
-  font-size: 0.7rem;
-  color: #83e6c0;
+table th, table td {
+  padding: 1rem;
+  text-align: right; /* Keeps numbers aligned by decimal points */
+  border-bottom: 1px solid rgba(131, 230, 192, 0.2);
 }
 
-table tbody {
+/* Specific styling for the summary footer */
+.summary-footer {
+  max-width: 50rem;
+  margin: 1rem auto; /* Centers the footer block */
+  text-align: right; /* Aligns the total with the table numbers */
+  padding: 1rem;
+  color: #83e6c0;    /* Matching your header color */
   font-family: "Roboto Condensed", sans-serif;
-  font-size: 0.85rem;
-  color: #c2e9e0;
+  font-size: 1.1rem;
+  border-top: 2px solid #83e6c0; /* Visual separator */
 }

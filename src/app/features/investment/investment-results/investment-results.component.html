@@ -13,17 +13,15 @@
       @for (annualData of result(); track annualData.year) {
         <tr>
           <td>{{ annualData.year }}</td>
-          <td>{{ annualData.valueEndOfYear }}</td>
-          <td>{{ annualData.interest }}</td>
-          <td>{{ annualData.totalInterest }}</td>
-          <td>{{ annualData.totalAmountInvested }}</td>
+          <td>{{ annualData.valueEndOfYear | inr }}</td>
+          <td>{{ annualData.interest | inr }}</td>
+          <td>{{ annualData.totalInterest | inr }}</td>
+          <td>{{ annualData.totalAmountInvested | inr }}</td>
         </tr>
       }
     </tbody>
+    <div class="summary-footer">
+      <strong>Grand Total Interest Earned: {{ totalInterest() | inr }}</strong>
+    </div>
   </table>
-  <div class="summary-footer">
-    <strong
-      >Grand Total Interest Earned: {{ totalInterest() | currency }}</strong
-    >
-  </div>
 </div>

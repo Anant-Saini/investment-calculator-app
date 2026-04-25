@@ -12,14 +12,12 @@ import { CalculateService } from './features/investment/calculate.service';
 })
 export class AppComponent {
 
-  isAnnualDataEmpty: boolean;
+  isAnnualDataEmpty = this.calculateService.isInvestmentResultsEmpty;
 
   constructor(private calculateService: CalculateService ) {
-    this.isAnnualDataEmpty = calculateService.getIsAnnualDataEmpty();
+
   }
 
-  onCalculate() {
-    this.isAnnualDataEmpty = this.calculateService.getIsAnnualDataEmpty();
-  }
+
 
 }

@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 import { Investment } from '../../shared/models/investment.model';
 import { AnnualData } from '../../shared/models/annual-data.model';
 
@@ -6,7 +6,17 @@ import { AnnualData } from '../../shared/models/annual-data.model';
   providedIn: 'root',
 })
 export class CalculateService {
-  investmentResults: AnnualData[] = [];
+  private resultSignal = signal<AnnualData[]>([]);
+
+  investmentResults = this.resultSignal.asReadonly();
+
+  isInvestmentResultsEmpty = computed(() => this.resultSignal().length === 0);
+  totalInterest = computed(() =>
+    this.resultSignal().reduce(
+      (acc, yearData) => acc + yearData.interest,
+      0,
+    ),
+  );
 
   constructor() {}
 
@@ -33,15 +43,6 @@ export class CalculateService {
           investment.initialInvestment + investment.annualInvestment * year,
       });
     }
-
-    this.investmentResults = annualDataArr;
-  }
-
-  getInvestmentResults(): AnnualData[] {
-    return this.investmentResults;
-  }
-
-  getIsAnnualDataEmpty(): boolean {
-    return this.investmentResults.length === 0;
+    this.resultSignal.set(annualDataArr);
   }
 }

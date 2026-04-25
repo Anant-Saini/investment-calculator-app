@@ -10,7 +10,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (annualData of getInvestmentResults; track annualData.year) {
+      @for (annualData of result(); track annualData.year) {
         <tr>
           <td>{{ annualData.year }}</td>
           <td>{{ annualData.valueEndOfYear }}</td>
@@ -21,4 +21,9 @@
       }
     </tbody>
   </table>
+  <div class="summary-footer">
+    <strong
+      >Grand Total Interest Earned: {{ totalInterest() | currency }}</strong
+    >
+  </div>
 </div>

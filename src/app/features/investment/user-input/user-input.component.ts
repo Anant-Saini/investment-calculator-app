@@ -16,7 +16,6 @@ export class UserInputComponent {
   annualInvestment: number = 0;
   expectedReturn: number = 0;
   durationInYears: number = 0;
-  @Output() calculate = new EventEmitter<void>();
 
 
   constructor(private calculateService: CalculateService) {
@@ -30,7 +29,6 @@ export class UserInputComponent {
       durationInYears: this.durationInYears
     }
     this.calculateService.calculateInvestmentResults(investment);
-    this.calculate.emit();
   }
 
 }

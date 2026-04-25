@@ -1,5 +1,5 @@
 <app-header/>
-<app-user-input (calculate)="onCalculate()" />
-@if (!isAnnualDataEmpty) {
+<app-user-input/>
+@if (!isAnnualDataEmpty()) {
     <app-investment-results/>
 }

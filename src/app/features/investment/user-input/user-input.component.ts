@@ -14,6 +14,7 @@ export class UserInputComponent {
   annualInvestment: number = 0;
   expectedReturn: number = 0;
   durationInYears: number = 0
+  
 
   onSubmit() {
     console.log("Submitted: ", this.initialInvestment, this.annualInvestment, this.expectedReturn, this.durationInYears);

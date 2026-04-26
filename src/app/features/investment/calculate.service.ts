@@ -22,25 +22,31 @@ export class CalculateService {
 
   calculateInvestmentResults(investment: Investment) {
     const annualDataArr: AnnualData[] = [];
-    let investmentValue = investment.initialInvestment;
+    const {
+      initialInvestment,
+      annualInvestment,
+      expectedReturn,
+      durationInYears,
+    } = investment;
+    let investmentValue = initialInvestment;
 
-    for (let i = 0; i < investment.durationInYears; i++) {
+    for (let i = 0; i < durationInYears; i++) {
       const year = i + 1;
       const interestEarnedInYear =
-        investmentValue * (investment.expectedReturn / 100);
-      investmentValue += interestEarnedInYear + investment.annualInvestment;
+        investmentValue * (expectedReturn / 100);
+      investmentValue += interestEarnedInYear + annualInvestment;
       const totalInterest =
         investmentValue -
-        investment.annualInvestment * year -
-        investment.initialInvestment;
+        annualInvestment * year -
+        initialInvestment;
       annualDataArr.push({
         year: year,
         interest: interestEarnedInYear,
         valueEndOfYear: investmentValue,
-        annualInvestment: investment.annualInvestment,
+        annualInvestment: annualInvestment,
         totalInterest: totalInterest,
         totalAmountInvested:
-          investment.initialInvestment + investment.annualInvestment * year,
+          initialInvestment + annualInvestment * year,
       });
     }
     this.resultSignal.set(annualDataArr);

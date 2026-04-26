@@ -13,7 +13,7 @@ import { InrCurrencyPipe } from "../../../shared/pipes/inr-currency.pipe";
 })
 export class InvestmentResultsComponent {
 
-  result = this.calculateService.investmentResults;
+  results = this.calculateService.investmentResults;
   totalInterest = this.calculateService.totalInterest;
 
 

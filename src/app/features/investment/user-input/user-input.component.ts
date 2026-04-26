@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Investment } from '../../../shared/models/investment.model';
 import { CalculateService } from '../calculate.service';
@@ -12,10 +12,10 @@ import { CalculateService } from '../calculate.service';
 })
 export class UserInputComponent {
 
-  initialInvestment: number = 0;
-  annualInvestment: number = 0;
-  expectedReturn: number = 0;
-  durationInYears: number = 0;
+  initialInvestment = signal('0');
+  annualInvestment = signal('0');
+  expectedReturn = signal('12');
+  durationInYears = signal('5');
 
 
   constructor(private calculateService: CalculateService) {
@@ -23,12 +23,21 @@ export class UserInputComponent {
 
   onSubmit() {
     let investment: Investment = {
-      initialInvestment: this.initialInvestment,
-      annualInvestment: this.annualInvestment,
-      expectedReturn: this.expectedReturn,
-      durationInYears: this.durationInYears
+      initialInvestment: +this.initialInvestment(),
+      annualInvestment: +this.annualInvestment(),
+      expectedReturn: +this.expectedReturn(),
+      durationInYears: +this.durationInYears()
     }
     this.calculateService.calculateInvestmentResults(investment);
+    this.resetForm();
+  
+  }
+
+  resetForm() {
+    this.initialInvestment.set('0');
+    this.annualInvestment.set('0');
+    this.expectedReturn.set('12');
+    this.durationInYears.set('5');
   }
 
 }
